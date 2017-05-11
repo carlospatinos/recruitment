@@ -10,5 +10,9 @@ router.get('/upload', function(req, res, next) {
   res.render('uploadcv', { title: 'Upload CV' });
 });
 
+router.get('/register', function(req, res, next) {
+  res.render('registerCandidate', { title: 'Candidate Registration' });
+});
+
 
 module.exports = router;
