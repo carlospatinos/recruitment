@@ -1,0 +1,28 @@
+extends layout
+
+block content
+
+  div.container
+    h1.display-4.m-b-2= title
+    div.content
+      table.table.table-striped
+        thead
+          tr
+            th Name
+            th College
+            th College Results
+            th CV
+            th Status
+            th Action
+        tbody
+          for candidate in candidates
+            tr
+              td #{candidate.name}
+              td #{candidate.college}
+              td #{candidate.collegeResults}
+              td 
+                a(href='#{candidate.cvLocation}' target="_blank") open
+              td 
+                span.label.label-default #{candidate.status}
+              td 
+                a(href='register?id=#{candidate._id}' target="_blank") edit

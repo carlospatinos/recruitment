@@ -1,12 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  p You can upload more than one file at a time (max 20). Format of the name will help you prepopullate values in the form to store details about candidates. "Name - School - Score.pdf"
-  
-  div.container
-    div.content
-      form.form-horizontal(id="uploadForm" enctype="multipart/form-data" action="candidates/api/cv" method="post")
-        input.span3(type="file" name="candidateCVs" multiple value="Hola")
-        br 
-        input.btn(type="submit", value="Upload CV(s)")
+    .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        // https://coligo.io/building-ajax-file-uploader-with-node/
+      div.container
+        h1.display-4.m-b-2= title
+        p You can upload more than one file at a time (max 20). Format of the name will help you prepopullate values in the form to store details about candidates. "Name - School - Score.pdf"
+        div.content
+          form.form-horizontal(id="uploadForm" enctype="multipart/form-data" action="candidates/api/cv" method="post")
+            input.span3(type="file" name="candidateCVs" multiple value="Hola")
+            br 
+            br 
+            input.btn(type="submit", value="Upload CV(s)")

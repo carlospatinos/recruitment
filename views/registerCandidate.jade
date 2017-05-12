@@ -4,23 +4,41 @@ block content
   .main.container
     .row
       .col-md-6.col-md-offset-3
-        h1.display-4.m-b-2= title
-
-        // register form
-        form(method='POST' action='/register')
-          div.form-group
-            label(for='name') Candidates name:
-            input#name.form-control.span3(type='text', placeholder='first and last' name='name')
-          div.form-group
-            label(for='email') Email:
-            input#email.form-control.span3(type='email', placeholder='name@email.com' name='email')
-          div.form-group
-            label(for='phoneNumber') Phone Number:
-            input#phoneNumber.form-control.span3(type='text', placeholder='087-793-54-12' name='phoneNumber')
-          div.form-group
-            label(for='college') College:
-            input#college.form-control.span3(type='text' placeholder='AIT / DIT / GMIT' name='college')
-          div.form-group
-            label(for='collegeResults') College results:
-            input#collegeResults.form-control.span3(type='text' placeholder='580 points / 2.1 ' name='collegeResults')
-          button.btn.btn-primary(type='submit') Register
+        h1.display-4.m-b-2= title 
+        if (candidates)
+          for candidate in candidates
+            form(method='POST' action='/register')
+              div.form-group
+                label(for='name') Candidates name:
+              input#name.form-control.span3(type='text', placeholder='first and last' name='  name' value="#{candidate.name}")
+              div.form-group
+                label(for='email') Email:
+              input#email.form-control.span3(type='email', placeholder='name@email.com' name  ='email' value="#{candidate.mail}")
+              div.form-group
+                label(for='phoneNumber') Phone Number:
+              input#phoneNumber.form-control.span3(type='text', placeholder='087-793-54-12'   name='phoneNumber' value="#{candidate.phoneNumber}")
+              div.form-group
+                label(for='college') College:
+              input#college.form-control.span3(type='text' placeholder='AIT / DIT / GMIT'   name='college' value="#{candidate.college}")
+              div.form-group
+                label(for='collegeResults') College results:
+              input#collegeResults.form-control.span3(type='text' placeholder='580 points /   2.1 ' name='collegeResults' value="#{candidate.collegeResults}")
+              button.btn.btn-primary(type='submit') Save
+        else
+          form(method='POST' action='/register')
+            div.form-group
+              label(for='name') Candidates name:
+              input#name.form-control.span3(type='text', placeholder='first and last' name='name' )
+            div.form-group
+              label(for='email') Email:
+              input#email.form-control.span3(type='email', placeholder='name@email.com' name='email' )
+            div.form-group
+              label(for='phoneNumber') Phone Number:
+              input#phoneNumber.form-control.span3(type='text', placeholder='087-793-54-12' name='phoneNumber' )
+            div.form-group
+              label(for='college') College:
+              input#college.form-control.span3(type='text' placeholder='AIT / DIT / GMIT' name='college' )
+            div.form-group
+              label(for='collegeResults') College results:
+              input#collegeResults.form-control.span3(type='text' placeholder='580 points / 2.1 ' name='collegeResults' )
+            button.btn.btn-primary(type='submit') Save

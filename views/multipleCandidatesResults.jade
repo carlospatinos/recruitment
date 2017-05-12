@@ -1,0 +1,35 @@
+extends layout
+
+block content
+
+  div.container
+    h1.display-4.m-b-2= title
+    div.content
+      table.table.table-striped
+        thead
+          tr
+            th Name
+            th College
+            th College Results
+            th CV
+            th Status
+            th Interview Date
+            th Company Score
+        tbody
+          for candidate in candidates
+            tr
+              td #{candidate.name}
+              td #{candidate.college}
+              td #{candidate.collegeResults}
+              td 
+                a(href='#{candidate.cvLocation}' target="_blank") open
+              td 
+                span.label.label-default #{candidate.status}
+              td 
+              td 
+                div.dropdown
+                  button.btn.btn-default.dropdown-toggle(type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true") Dropdown 
+                    span.caret
+                  ul.dropdown-menu(aria-labelledby="dropdownMenu1")
+                    li
+                      a(href="#") 
