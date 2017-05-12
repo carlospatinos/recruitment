@@ -14,5 +14,9 @@ router.get('/register', function(req, res, next) {
   res.render('registerCandidate', { title: 'Candidate Registration' });
 });
 
+router.get('/multiple', function(req, res, next) {
+  res.render('multipleCandidatesView', { title: 'Multiple Candidate View' });
+});
+
 
 module.exports = router;
