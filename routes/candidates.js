@@ -76,6 +76,8 @@ function uploadData(req,res, next){
 
         	var newUser = Candidate({
 			  name: json.name,
+			  phoneNumber: "",
+			  email: "",
 			  college: json.college,
 			  collegeResults: json.collegeResults,
 			  cvLocation: "http://" + req.headers.host + json.filePath.replace('public', ''),

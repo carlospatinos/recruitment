@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 #{title} for #{candidate.name} 
+
+        form(method='POST' action='/register')
+          if error
+            div.alert.alert-danger #{error}
+          else            
+            div.form-group
+              label(for='score') Score for the #{testName}:
+              select#score.selectpicker(name='score')
+                option 1
+                option 2
+                option 3
+                option 4
+                option 5
+            div.form-group
+              label(for='feedback') Feedback:
+              textarea#feedback.form-control.span3(rows='5', placeholder='Focus on objective feedback' name='feedback')
+            div.form-group
+              label(for='interviewer') Interviewer:
+              textarea#interviewer.form-control.span3(rows='2' placeholder='Manager/Technical Interviewer' name='interviewer' )
+            div.form-group
+              label(for='hire') Would you be happy if the candidate joins your team:
+              select#hire.selectpicker(name='hire')
+                option no
+                option yes
+            button.btn.btn-primary(type='submit') Save

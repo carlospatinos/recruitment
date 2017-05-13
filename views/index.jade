@@ -1,26 +1,37 @@
 extends layout
 
 block content
-  div.top
-    form.form-horizontal(method="post", id="loginForm")
-      label Username
-      input.span3(id="username", type="text", name="User", placeholder="Enter your username")
-      label Password
-      input.span3(id="password", type="password", name="Password")
-      input.btn(type="submit", value="Log In")
   div.container
     div.content
       table.table.table-striped
         thead
           tr
-            th Table
-            th Heading
+            th Link
+            th Description
         tbody
           tr
-            td Blah
-            td Test
+            td 
+              a(href='/upload' ) Multi upload CVs
+            td Upload up to 20 CVs at the same time with some prepopulated data obtained from the name of the files.
           tr
-            td Hello
-            td World
+            td 
+              a(href='/register' ) Register single candidate
+            td Allows you to add details candidate by candidate and uploading their CV
+          tr
+            td 
+              a(href='/multiple' ) Multiple candidate view
+            td Allows you to visualize multiple candidates and whats the status
+          tr
+            td 
+              a(href='/screening?type=random' ) Random screening
+            td Remove bios on sorting cvs. CVs will be presented on random order base on one single criteria: CVs to be reviewed 
+          tr
+            td 
+              a(href='/screening?type=diversity' ) Focus on diversity screening
+            td Remove bios on sorting cvs. CVs will be presented targeting diversity
+          tr
+            td 
+              a(href='/master' ) Master View
+            td With a lot of data
  
   div.footer

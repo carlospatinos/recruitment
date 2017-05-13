@@ -5,17 +5,53 @@ var Schema = mongoose.Schema;
 // create a schema
 var candidateSchema = new Schema({
   name: { type: String, required: true, unique: true },
+  phoneNumber: String,
+  email: String,
   college: String,
   collegeResults: String,
   address: String,
   cvLocation: String,
   status: String,
   interviewDate: Date,
-  companyScore: String,
+  javaTestResult: String,
+  javaTestComments: String,
+  javaTestInterviewer: String,
+  javaTestHire: String,
+  interviewResults: String,
+  interviewComments: String,
+  interviewInterviewer: String,
+  interviewHire: String,
+  teamExcerciseResults: String,
+  teamExcerciseComments: String,
+  teamExcerciseInterviewer: String,
+  teamExcerciseHire: String,
   created_at: Date,
   updated_at: Date
 });
 
+candidateSchema.methods.clear = function() {
+  this.name= '';
+  this.phoneNumber= '';
+  this.email= '';
+  this.college= '';
+  this.collegeResults= '';
+  this.address= '';
+  this.cvLocation= '';
+  this.status= '';
+  this.javaTestResult= '';
+  this.javaTestComments= '';
+  this.interviewResults= '';
+  this.interviewComments= '';
+  this.teamExcerciseResults= '';
+  this.teamExcerciseComments= '';
+  this.javaTestInterviewer = '';
+  this.interviewInterviewer='';
+  this.teamExcerciseInterviewer='';
+  this.javaTestHire='';
+  this.interviewHire='';
+  this.teamExcerciseHire='';
+  return this;
+}
 
 // on every save, add the date
 candidateSchema.pre('save', function(next) {
