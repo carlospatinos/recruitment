@@ -1,0 +1,103 @@
+extends layout
+
+block content
+  div.container
+    div.row
+      div.col-xs-18.col-md-12
+        h1.display-4.m-b-2= title 
+    div.row
+      div.col-xs-12.col-md-8 hola
+      div.col-xs-6.col-md-4 adios
+    div.row
+        script.
+          RadarChart.defaultConfig.color = function() {};
+          RadarChart.defaultConfig.radius = 3;
+          RadarChart.defaultConfig.w = 400;
+          RadarChart.defaultConfig.h = 400;
+          var data3=  !{JSON.stringify(data)}
+          console.log(data3);
+          var data2 = [
+              {
+                className: 'germany', // optional can be used for styling
+                axes: [
+                  {axis: "strength", value: 13, yOffset: 10}, 
+                  {axis: "intelligence", value: 6}, 
+                  {axis: "charisma", value: 5},  
+                  {axis: "dexterity", value: 9},  
+                  {axis: "luck", value: 2, xOffset: -20}
+                ]
+              },
+              {
+                className: 'argentina',
+                axes: [
+                  {axis: "strength", value: 6}, 
+                  {axis: "intelligence", value: 7}, 
+                  {axis: "charisma", value: 10},  
+                  {axis: "dexterity", value: 13},  
+                  {axis: "luck", value: 9}
+                ]
+              }
+            ];
+          function randomDataset() {
+            return data.map(function(d) {
+              return {
+                className: d.className,
+                axes: d.axes.map(function(axis) {
+                  return {axis: axis.axis, value: Math.ceil(Math.random() * 10)};
+                })
+              };
+            });
+          }
+
+          //alert('data' + !{JSON.stringify(data)} );
+          var chart = RadarChart.chart();
+          var cfg = chart.config(); // retrieve default config
+          var svg = d3.select('body').append('svg')
+            .attr('width', cfg.w + cfg.w + 50)
+            .attr('height', cfg.h + cfg.h / 4);
+          svg.append('g').classed('single', 1).datum(randomDataset()).call(chart);
+          
+          // many radars
+          chart.config({w: cfg.w / 4, h: cfg.h / 4, axisText: false, levels: 0, circles: false});
+          cfg = chart.config();
+          function render() {
+            var game = svg.selectAll('g.game').data(
+              [
+                randomDataset(),
+                randomDataset(),
+                randomDataset(),
+                randomDataset()
+              ]
+            );
+            game.enter().append('g').classed('game', 1);
+            game
+              .attr('transform', function(d, i) { return 'translate('+((cfg.w * 4) + 50 + (i * cfg.w))+','+ (cfg.h * 1.3) +')'; })
+              .call(chart);
+          
+            setTimeout(render, 1000);
+          }
+          render();
+
+
+        form(method='POST' action='/register')
+          if error
+            div.alert.alert-danger #{error}
+          div.form-group
+            label(for='name') Candidates name:
+            input#name.form-control.span3(type='text', placeholder='first and last' name='name' value="#{candidate.name}")
+          div.form-group
+            label(for='email') Email:
+            input#email.form-control.span3(type='email', placeholder='name@email.com' name  ='email' value="#{candidate.email}")
+          div.form-group
+            label(for='phoneNumber') Phone Number:
+            input#phoneNumber.form-control.span3(type='text', placeholder='087-793-54-12'   name='phoneNumber' value="#{candidate.phoneNumber}")
+          div.form-group
+            label(for='college') College:
+            input#college.form-control.span3(type='text' placeholder='AIT / DIT / GMIT'   name='college' value="#{candidate.college}")
+          div.form-group
+            label(for='collegeResults') College results:
+            input#collegeResults.form-control.span3(type='text' placeholder='580 points /   2.1 ' name='collegeResults' value="#{candidate.collegeResults}")
+          div.chart-container #{data}
+          script.
+            RadarChart.draw(".chart-container", data3);
+          button.btn.btn-primary(type='submit') Save

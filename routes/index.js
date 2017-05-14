@@ -38,6 +38,49 @@ router.get('/register', function(req, res, next) {
   
 });
 
+
+router.get('/profile', function(req, res, next) {
+  var emptyCandidate = new Candidate({}).clear();
+
+  var data = [
+    {
+      className: 'germany', // optional can be used for styling
+      axes: [
+        {axis: "Java Test", value: 13, yOffset: 10}, 
+        {axis: "Team Excersise", value: 6}, 
+        {axis: "Interview", value: 5},  
+        {axis: "Standar test", value: 9},  
+        {axis: "School grades", value: 2, xOffset: -20}
+      ]
+    }
+    /*,
+    {
+      className: 'argentina',
+      axes: [
+        {axis: "strength", value: 6}, 
+        {axis: "intelligence", value: 7}, 
+        {axis: "charisma", value: 10},  
+        {axis: "dexterity", value: 13},  
+        {axis: "luck", value: 9}
+      ]
+    }*/
+  ];
+
+  if (req.query.id) {
+    Candidate.find({_id: req.query.id}, function(err, candidates) {
+      if (err) 
+      	res.render('candidateProfile', { title: 'Candidate Registration', candidate: emptyCandidate, error: 'Unable to find candidate', data: data }); 
+      else 
+  	    res.render('candidateProfile', { title: 'Candidate Registration', candidate: candidates[0], data: data });  
+    });
+  } else {
+  	res.render('candidateProfile', { title: 'Candidate Registration', candidate: emptyCandidate, data: data });  
+  }
+  
+});
+
+
+
 router.get('/multiple', function(req, res, next) {
   Candidate.find({status: "To be reviewed"}, function(err, candidates) {
     if (err) throw err;
