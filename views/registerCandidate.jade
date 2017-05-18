@@ -5,7 +5,7 @@ block content
     .row
       .col-md-6.col-md-offset-3
         h1.display-4.m-b-2= title 
-
+        
         form(method='POST' action='/register')
           if error
             div.alert.alert-danger #{error}
@@ -35,15 +35,13 @@ block content
           div.form-group
             //input#status.form-control.span3(type='text' placeholder='' name='status' value="#{candidate.status}")
           div.form-group
-            label(for='status') Status:
-            select#status
-              option to be reviewed
-              option results needed
-              option interview to be scheduled
-              option regret
-              option withdrew
-              option interview to be schedule
-              option acceped
+            label(for='status') Status: #{candidate.status}
+            select#status.selectpicker(name="status")
+              for status in statusOptions
+                if candidate.status == status
+                  option(data-icon="glyphicon-ok") #{status}
+                else
+                  option #{status}
           div.form-group
             label(for='interviewDate') Interview Date:
             input#interviewDate.form-control.span3(type='text' placeholder='' name='interviewDate' value="#{candidate.interviewDate}")
@@ -58,7 +56,10 @@ block content
             input#javaTestInterviewer.form-control.span3(type='text' placeholder='' name='javaTestInterviewer' value="#{candidate.javaTestInterviewer}")
           div.form-group
             label(for='javaTestHire') Hire from Java Test:
-            input#javaTestHire.form-control.span3(type='text' placeholder='' name='javaTestHire' value="#{candidate.javaTestHire}")
+            select#javaTestHire(name="javaTestHire")
+              option #{candidate.javaTestHire}
+              option no
+              option yes
           div.form-group
             label(for='interviewResults') Interview Results:
             input#interviewResults.form-control.span3(type='text' placeholder='' name='interviewResults' value="#{candidate.interviewResults}")
@@ -70,7 +71,10 @@ block content
             input#interviewInterviewer.form-control.span3(type='text' placeholder='' name='interviewInterviewer' value="#{candidate.interviewInterviewer}")
           div.form-group
             label(for='interviewHire') Hire from interview:
-            input#interviewHire.form-control.span3(type='text' placeholder='' name='interviewHire' value="#{candidate.interviewHire}")
+            select#interviewHire(name="interviewHire")
+              option #{candidate.interviewHire}
+              option no
+              option yes
           div.form-group
             label(for='teamExerciseResults') Team Exercise Results:
             input#teamExerciseResults.form-control.span3(type='text' placeholder='' name='teamExerciseResults' value="#{candidate.teamExerciseResults}")
@@ -81,8 +85,11 @@ block content
             label(for='teamExerciseInterviewer') Team Exercise Interviewer:
             input#teamExerciseInterviewer.form-control.span3(type='text' placeholder='' name='teamExerciseInterviewer' value="#{candidate.teamExerciseInterviewer}")
           div.form-group
-            label(for='teamExerciseHire') Hire from Team Exercise:
-            input#teamExerciseHire.form-control.span3(type='text' placeholder='' name='teamExerciseHire' value="#{candidate.teamExerciseHire}")
+            label(for='teamExerciseHire') Hire from Team Exercise
+            select#teamExerciseHire(name="teamExerciseHire")
+              option #{candidate.teamExerciseHire}
+              option no
+              option yes
           div.form-group
             label(for='aptitudeTest') aptitudeTest:
             input#aptitudeTest.form-control.span3(type='text' placeholder='' name='aptitudeTest' value="#{candidate.aptitudeTest}")

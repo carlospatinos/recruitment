@@ -3,6 +3,8 @@ var router = express.Router();
 
 var Candidate = require('../models/candidate');
 
+var statusOptions = [ 'to be reviewed', 'results needed', 'interview to be scheduled', 'regret', 'withdrew', 'interview to be schedule', 'acceped'];
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -16,7 +18,7 @@ router.get('/upload', function(req, res, next) {
 router.get('/master', function(req, res, next) {
   
 
-  Candidate.find({status: "To be reviewed"}, function(err, candidates) {
+  Candidate.find( { }, function(err, candidates) {
     if (err) throw err;
     res.render('multipleMasterView', { title: 'Master View', candidates: candidates, selected: 'master'  });
   });
@@ -28,12 +30,12 @@ router.get('/register', function(req, res, next) {
   if (candidateId) {
     Candidate.find({_id: candidateId}, function(err, candidates) {
       if (err) 
-      	res.render('registerCandidate', { title: 'Candidate Registration', candidate: emptyCandidate, error: 'Unable to find candidate', selected: 'register' }); 
+      	res.render('registerCandidate', { title: 'Candidate Registration', candidate: emptyCandidate, statusOptions: statusOptions, error: 'Unable to find candidate', selected: 'register' }); 
       else 
-  	    res.render('registerCandidate', { title: 'Candidate Registration', candidate: candidates[0], selected: 'register'  } );  
+  	    res.render('registerCandidate', { title: 'Candidate Registration', candidate: candidates[0], statusOptions: statusOptions, selected: 'register'  } );  
     });
   } else {
-  	res.render('registerCandidate', { title: 'Candidate Registration', candidate: emptyCandidate, selected: 'register'  });  
+  	res.render('registerCandidate', { title: 'Candidate Registration', candidate: emptyCandidate, statusOptions: statusOptions, selected: 'register'  });  
   }
   
 });
@@ -66,8 +68,10 @@ router.post('/register', function(req, res, next) {
 
 
   var upsertData = dataFromCandidate.toObject();
+  console.log(upsertData);
 
   var candidateId = req.body.candidateId;
+
   console.log("req.query.id" + candidateId);
   if (candidateId) {
     delete upsertData._id;
@@ -75,19 +79,19 @@ router.post('/register', function(req, res, next) {
     Candidate.findOneAndUpdate({ _id: candidateId }, upsertData, {upsert:true}, function(err, doc){
       if (err) {
         console.log(err);
-        res.send("error")
+        res.render('registerCandidate', { title: 'Candidate Registration', candidate: dataFromCandidate, statusOptions: statusOptions, error: 'Unable to find candidate', selected: 'register' }); 
         //return res.send(500, { error: err });
       } else {
-        return res.send("succesfully saved");
+        res.render('registerCandidate', { title: 'Candidate Registration', candidate: '', error: 'Exito', statusOptions: statusOptions, selected: 'register' }); 
       }
     });
   } else {
     dataFromCandidate.save(function(err) {
       if (err) {
-        console.log('error' + err);
+        res.render('registerCandidate', { title: 'Candidate Registration', candidate: dataFromCandidate, statusOptions: statusOptions, error: 'Unable to find candidate', selected: 'register' }); 
       } else {
         console.log('Candidate created!');
-        res.send("done")
+        res.render('registerCandidate', { title: 'Candidate Registration', candidate: '', error: 'Exito', statusOptions: statusOptions, selected: 'register' }); 
       }
     });
   }
