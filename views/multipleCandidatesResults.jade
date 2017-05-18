@@ -27,9 +27,13 @@ block content
                 span.label.label-default #{candidate.status}
               td 
               td 
-                div.dropdown
-                  button.btn.btn-default.dropdown-toggle(type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true") Dropdown 
-                    span.caret
-                  ul.dropdown-menu(aria-labelledby="dropdownMenu1")
-                    li
-                      a(href="#") 
+                div.form-group
+                  label(for="status")
+                  select#status
+                    option to be reviewed
+                    option results needed
+                    option interview to be scheduled
+                    option regret
+                    option withdrew
+                    option interview to be schedule
+                    option acceped

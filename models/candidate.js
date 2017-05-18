@@ -21,10 +21,11 @@ var candidateSchema = new Schema({
   interviewComments: String,
   interviewInterviewer: String,
   interviewHire: String,
-  teamExcerciseResults: String,
-  teamExcerciseComments: String,
-  teamExcerciseInterviewer: String,
-  teamExcerciseHire: String,
+  teamExerciseResults: String,
+  teamExerciseComments: String,
+  teamExerciseInterviewer: String,
+  teamExerciseHire: String,
+  aptitudeTest: String,
   created_at: Date,
   updated_at: Date
 });
@@ -42,14 +43,15 @@ candidateSchema.methods.clear = function() {
   this.javaTestComments= '';
   this.interviewResults= '';
   this.interviewComments= '';
-  this.teamExcerciseResults= '';
-  this.teamExcerciseComments= '';
+  this.teamExerciseResults= '';
+  this.teamExerciseComments= '';
   this.javaTestInterviewer = '';
   this.interviewInterviewer='';
-  this.teamExcerciseInterviewer='';
+  this.teamExerciseInterviewer='';
   this.javaTestHire='';
   this.interviewHire='';
-  this.teamExcerciseHire='';
+  this.teamExerciseHire='';
+  this.aptitudeTest='';
   return this;
 }
 

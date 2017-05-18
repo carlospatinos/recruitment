@@ -1,6 +1,5 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 10px;
 }
 
 a {
@@ -10,7 +9,7 @@ a {
 
 
 .radar-chart .area {
-  fill-opacity: 0.7;
+  fill-opacity: 0.5;
 }
 .radar-chart.focus .area {
   fill-opacity: 0.3;
@@ -25,4 +24,11 @@ a {
 .area.argentina, .argentina .circle {
   fill: #ADD8E6;
   stroke: none;
+}
+.legend {
+  font-family: 'Raleway', sans-serif;
+  fill: #333333;
+}
+.tooltip {
+  fill: #333333;
 }

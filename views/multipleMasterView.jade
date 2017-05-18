@@ -17,6 +17,7 @@ block content
             th Java test
             th Interview
             th Team Excersise
+            th Profile
         tbody
           for candidate in candidates
             tr
@@ -35,3 +36,5 @@ block content
                 a(href='score?type=interview&id=#{candidate._id}' target="_blank") interview
               td 
                 a(href='score?type=team&id=#{candidate._id}' target="_blank") team
+              td 
+                a(href='profile?id=#{candidate._id}' target="_blank") profile

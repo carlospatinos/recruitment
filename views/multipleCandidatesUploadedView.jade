@@ -5,6 +5,8 @@ block content
   div.container
     h1.display-4.m-b-2= title
     div.content
+      if error
+        div.alert.alert-danger #{error}
       table.table.table-striped
         thead
           tr
@@ -14,6 +16,7 @@ block content
             th CV
             th Status
             th Action
+            th extra
         tbody
           for candidate in candidates
             tr
@@ -25,4 +28,17 @@ block content
               td 
                 span.label.label-default #{candidate.status}
               td 
+                div.form-group
+                  label(for="status")
+                  select#status
+                    option to be reviewed
+                    option results needed
+                    option interview to be scheduled
+                    option regret
+                    option withdrew
+                    option interview to be schedule
+                    option acceped
+                    
+              td 
                 a(href='register?id=#{candidate._id}' target="_blank") edit
+

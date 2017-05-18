@@ -66,15 +66,18 @@ var upload = multer({
 function uploadData(req,res, next){
     upload(req,res,function(err) {
         //console.log(req.body);
-        //console.log(req.files);
+        //console.log(require.files);
 
         var files = req.files;
         var candidates = [];
+        var errorsToShow = [];
         for (var i = 0; i < files.length; i++) { 
 
         	var json = processName(files[i]);
 
-        	var newUser = Candidate({
+        	var emptyCandidate = new Candidate({}).clear();
+
+        	var newCandidate = Candidate({
 			  name: json.name,
 			  phoneNumber: "",
 			  email: "",
@@ -84,20 +87,25 @@ function uploadData(req,res, next){
 			  status: "To be reviewed" //TODO define some enum for status to be reviwed -> schedule interview or regret -> interview scheduled -> propose to hire -> on site
 			});
 
-			newUser.save(function(err) {
-  			  if (err) throw err;
+			newCandidate.save(function(err) {
+			  if (err) {
+			  	errorsToShow.push(err);
+			  }
   			  console.log('Candidate created!');
 			});
 
-			candidates.push(newUser);
+			candidates.push(newCandidate);
         }
 
         if(err) {
-        	console.log(err)
-            return res.end("Error uploading file.");
+            //return res.redirect("/multiple" );
+            console.log(error)
+            res.render('multipleCandidatesUploadedView', { title: 'Candidates to be reviewed', candidates: candidates, selected: 'multiple', error: errorsToShow });
+
+        } else {
+          res.redirect("/multiple" );
         }
 
-        res.redirect("/multiple")
         
     });
 };

@@ -10,6 +10,8 @@ block content
           if error
             div.alert.alert-danger #{error}
           div.form-group
+            input#candidateId(type='hidden', name='candidateId' value="#{candidate._id}")
+          div.form-group
             label(for='name') Candidates name:
             input#name.form-control.span3(type='text', placeholder='first and last' name='name' value="#{candidate.name}")
           div.form-group
@@ -24,4 +26,65 @@ block content
           div.form-group
             label(for='collegeResults') College results:
             input#collegeResults.form-control.span3(type='text' placeholder='580 points /   2.1 ' name='collegeResults' value="#{candidate.collegeResults}")
+          div.form-group
+            label(for='address') Address:
+            input#address.form-control.span3(type='text' placeholder='' name='address' value="#{candidate.address}")
+          div.form-group
+            label(for='cvLocation') CV Link:
+            input#cvLocation.form-control.span3(type='text' placeholder='' name='cvLocation' value="#{candidate.cvLocation}")
+          div.form-group
+            //input#status.form-control.span3(type='text' placeholder='' name='status' value="#{candidate.status}")
+          div.form-group
+            label(for='status') Status:
+            select#status
+              option to be reviewed
+              option results needed
+              option interview to be scheduled
+              option regret
+              option withdrew
+              option interview to be schedule
+              option acceped
+          div.form-group
+            label(for='interviewDate') Interview Date:
+            input#interviewDate.form-control.span3(type='text' placeholder='' name='interviewDate' value="#{candidate.interviewDate}")
+          div.form-group
+            label(for='javaTestResult') Java Test Result:
+            input#javaTestResult.form-control.span3(type='text' placeholder='' name='javaTestResult' value="#{candidate.javaTestResult}")
+          div.form-group
+            label(for='javaTestComments') Java TestC omments:
+            input#javaTestComments.form-control.span3(type='text' placeholder='' name='javaTestComments' value="#{candidate.javaTestComments}")
+          div.form-group
+            label(for='javaTestInterviewer') Java Test Interviewer:
+            input#javaTestInterviewer.form-control.span3(type='text' placeholder='' name='javaTestInterviewer' value="#{candidate.javaTestInterviewer}")
+          div.form-group
+            label(for='javaTestHire') Hire from Java Test:
+            input#javaTestHire.form-control.span3(type='text' placeholder='' name='javaTestHire' value="#{candidate.javaTestHire}")
+          div.form-group
+            label(for='interviewResults') Interview Results:
+            input#interviewResults.form-control.span3(type='text' placeholder='' name='interviewResults' value="#{candidate.interviewResults}")
+          div.form-group
+            label(for='interviewComments') Interview Comments:
+            input#interviewComments.form-control.span3(type='text' placeholder='' name='interviewComments' value="#{candidate.interviewComments}")
+          div.form-group
+            label(for='interviewInterviewer') Interview Interviewer:
+            input#interviewInterviewer.form-control.span3(type='text' placeholder='' name='interviewInterviewer' value="#{candidate.interviewInterviewer}")
+          div.form-group
+            label(for='interviewHire') Hire from interview:
+            input#interviewHire.form-control.span3(type='text' placeholder='' name='interviewHire' value="#{candidate.interviewHire}")
+          div.form-group
+            label(for='teamExerciseResults') Team Exercise Results:
+            input#teamExerciseResults.form-control.span3(type='text' placeholder='' name='teamExerciseResults' value="#{candidate.teamExerciseResults}")
+          div.form-group
+            label(for='teamExerciseComments') Team Exercise Comments:
+            input#teamExerciseComments.form-control.span3(type='text' placeholder='' name='teamExerciseComments' value="#{candidate.teamExerciseComments}")
+          div.form-group
+            label(for='teamExerciseInterviewer') Team Exercise Interviewer:
+            input#teamExerciseInterviewer.form-control.span3(type='text' placeholder='' name='teamExerciseInterviewer' value="#{candidate.teamExerciseInterviewer}")
+          div.form-group
+            label(for='teamExerciseHire') Hire from Team Exercise:
+            input#teamExerciseHire.form-control.span3(type='text' placeholder='' name='teamExerciseHire' value="#{candidate.teamExerciseHire}")
+          div.form-group
+            label(for='aptitudeTest') aptitudeTest:
+            input#aptitudeTest.form-control.span3(type='text' placeholder='' name='aptitudeTest' value="#{candidate.aptitudeTest}")
+
           button.btn.btn-primary(type='submit') Save
