@@ -102,3 +102,4 @@ typings/
 
 public/uploads/
 
+.DS_Store

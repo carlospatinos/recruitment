@@ -5,13 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+require('dotenv').config()
 
 var index = require('./routes/index');
 var candidates = require('./routes/candidates');
 
 var app = express();
 
-mongoose.connect('mongodb://usr:pwd@ds137281.mlab.com:37281/recruit');
+mongoose.connect(process.env.MONGO_URL);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
